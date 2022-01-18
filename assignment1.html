@@ -57,26 +57,26 @@
                     */<br><br>
 
                     // the setup function runs once when you press reset or power the board<br>&ensp;
-                    void setup() {<br><\t>
-                      // initialize digital pin LED_BUILTIN as an output.<br><\t>
-                      pinMode(10, OUTPUT);    // Blue LED<br><\t>
-                      pinMode(8, OUTPUT);     // White LED<br><\t>
+                    void setup() {<br>
+                      // initialize digital pin LED_BUILTIN as an output.<br>
+                      pinMode(10, OUTPUT);    // Blue LED<br>
+                      pinMode(8, OUTPUT);     // White LED<br>
                       pinMode(6, OUTPUT);     // Red LED<br>
                     }<br><br>
 
                     // the loop function runs over and over again forever<br>
-                    void loop() {<br><\t>
+                    void loop() {<br>
                       digitalWrite(10, HIGH);   // Blue LED  - ON   (HIGH is the voltage level)<br><\t>
-                      digitalWrite(8, LOW);     // White LED - OFF<br><\t>
-                      digitalWrite(6,LOW);      // Red LED   - OFF<br><\t>
+                      digitalWrite(8, LOW);     // White LED - OFF<br>
+                      digitalWrite(6,LOW);      // Red LED   - OFF<br>
                       delay(250);               // delay of 0.25 seconds or 250 milliseconds<br><\t>
-                      digitalWrite(10, LOW);    // Blue LED  - OFF<br><\t>
-                      digitalWrite(8, HIGH);    // White LED - ON<br><\t>
-                      digitalWrite(6,LOW);      // Red LED   - OFF<br><\t>
+                      digitalWrite(10, LOW);    // Blue LED  - OFF<br>
+                      digitalWrite(8, HIGH);    // White LED - ON<br>
+                      digitalWrite(6,LOW);      // Red LED   - OFF<br>
                       delay(250);               // delay of 0.25 seconds or 250 milliseconds<br><\t>
-                      digitalWrite(10, LOW);    // Blue LED  - OFF<br><\t>
-                      digitalWrite(8, LOW);     // White LED - OFF<br><\t>
-                      digitalWrite(6,HIGH);     // Red LED   - ON<br><\t>
+                      digitalWrite(10, LOW);    // Blue LED  - OFF<br>
+                      digitalWrite(8, LOW);     // White LED - OFF<br>
+                      digitalWrite(6,HIGH);     // Red LED   - ON<br>
                       delay(250);               // delay of 0.25 seconds or 250 milliseconds<br>
                     }
                 </code>
