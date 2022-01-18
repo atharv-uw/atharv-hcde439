@@ -21,6 +21,34 @@ a {
   padding: 30px 30px 30px;
 }
 
+.Schematic {
+  background: #fff;
+  color: #000;
+  height: auto;
+  padding: 30px 30px 30px;
+}
+
+.circuit {
+  background: #fff;
+  color: #000;
+  height: auto;
+  padding: 30px 30px 30px;
+}
+
+.firmware {
+  background: #fff;
+  color: #000;
+  height: auto;
+  padding: 30px 30px 30px;
+}
+
+.gif {
+  background: #fff;
+  color: #000;
+  height: auto;
+  padding: 30px 30px 30px;
+}
+
 .header h1 {
   font-size: 50px;
   }
