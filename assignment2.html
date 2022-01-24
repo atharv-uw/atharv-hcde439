@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 <!DOCTYPE html> 
 <html> 
     <head> 
@@ -10,16 +14,86 @@
 
     </head> 
     <body> 
-
         <div class="header">
-            <h1>Example Student's Assignment 2!</h1>
+            <h1>Atharv's Assignment 2: Fade!</h1>
             <p>
-            <img src="red-panda.jpg" width=400></a>
+            <img src="side-view.jpg" width=400></a>
             </p>
             <p>
-            Here is all the documentation for assignment 2!
+            Here is all the documentation for assignment 1! 
             </p>
         </div>
-        
+        <div class="Schematic">
+            <h3>Schematic Diagram</h3>
+            <p>
+            <img src="schematic.jpg" width=400></a>
+            </p>
+            <p>
+            This is a schematic diagram of the circuit I built and shows
+            the 3 LEDs connected to the 3 different pins with a resistor
+            of 220 ohms and a current output of 5V at the pins.
+            </p>
+        </div>
+
+        <div class="circuit">
+            <h3>Circuit</h3>
+            <p>
+            <img src="top-view.jpg" width=400></a>
+            </p>
+            <p>
+            This is a top view of the breadboard circuit wjere you can see all the connections.
+            </p>
+        </div>
+
+        <div class="firmware">
+            <h3>Firmware</h3>
+            <p>
+            Here is the Arduino code I wrote and used for this blinking pattern:<br>
+                <code>
+                    /*<br>&ensp;
+                      HCDE 439: Physical Computing (Winter '22)<br>&ensp;
+                      Student: Atharv W<br>&ensp;
+                      Assignment 1: Blink<br>&ensp;<br><br>
+
+                      Turns on the 3 LEDs independently one after the other with a delay of 0.25 seconds<br>&ensp;
+                      following the pattern Blue-White-Red repeatedly.<br>
+                    */<br><br>
+
+                    // the setup function runs once when you press reset or power the board<br>&ensp;
+                    void setup() {<br>
+                      // initialize digital pin LED_BUILTIN as an output.<br>
+                      pinMode(10, OUTPUT);    // Blue LED<br>
+                      pinMode(8, OUTPUT);     // White LED<br>
+                      pinMode(6, OUTPUT);     // Red LED<br>
+                    }<br><br>
+
+                    // the loop function runs over and over again forever<br>
+                    void loop() {<br>
+                      digitalWrite(10, HIGH);   // Blue LED  - ON   (HIGH is the voltage level)<br>
+                      digitalWrite(8, LOW);     // White LED - OFF<br>
+                      digitalWrite(6,LOW);      // Red LED   - OFF<br>
+                      delay(250);               // delay of 0.25 seconds or 250 milliseconds<br>
+                      digitalWrite(10, LOW);    // Blue LED  - OFF<br>
+                      digitalWrite(8, HIGH);    // White LED - ON<br>
+                      digitalWrite(6,LOW);      // Red LED   - OFF<br>
+                      delay(250);               // delay of 0.25 seconds or 250 milliseconds<br>
+                      digitalWrite(10, LOW);    // Blue LED  - OFF<br>
+                      digitalWrite(8, LOW);     // White LED - OFF<br>
+                      digitalWrite(6,HIGH);     // Red LED   - ON<br>
+                      delay(250);               // delay of 0.25 seconds or 250 milliseconds<br>
+                    }
+                </code>
+            </p>
+        </div>
+
+        <div class="gif">
+            <h3>GIF</h3>
+            <p>
+            <img src="blink-gif.gif" width=400></a>
+            </p>
+            <p>
+            Enjoy this gif I made of the LEDs blinking!
+            </p>
+        </div>
     </body>
 </html>
