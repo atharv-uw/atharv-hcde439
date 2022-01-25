@@ -55,14 +55,14 @@ layout: default
             Here is the Arduino code I wrote and used for this button/fade pattern:<br>
                 <code>
                     /*<br>&ensp;
-                      HCDE 439: Physical Computing (Winter '22)<br>
-                      Student: Atharv W<br>
-                      Assignment 2: Fade<br><br>
+                      HCDE 439: Physical Computing (Winter '22)<br>&ensp;
+                      Student: Atharv W<br>&ensp;
+                      Assignment 2: Fade<br><br>&ensp;
 
-                      Turns on the green LED to show the system is turned on and working.<br>
-                      When button is pressed (and held):<br>
-                        the green LED dimly blinks very fast (almost turned off)<br>
-                        the red and yellow LED turn on<br>
+                      Turns on the green LED to show the system is turned on and working.<br>&ensp;
+                      When button is pressed (and held):<br>&ensp;
+                        the green LED dimly blinks very fast (almost turned off)<br>&ensp;
+                        the red and yellow LED turn on<br>&ensp;
                         the RGB LED fades in and out with a purple light<br>
                     */<br><br>
 
@@ -80,58 +80,58 @@ layout: default
                     int brightness = 0;          // variable for reading the pushbutton status<br>
                     int fadeAmount = 5;          // variable for reading the pushbutton status<br><br>
 
-                    void setup() {<br>
-                      // initialize the red LED pin as an output:<br>
-                      pinMode(redLED, OUTPUT);<br>
-                      // initialize the yellow LED pin as an output:<br>
-                      pinMode(yellowLED, OUTPUT);<br>
-                      // initialize the green LED pin as an output:<br>
-                      pinMode(greenLED, OUTPUT);<br>
-                      // initialize the pushbutton pin as an input:<br>
-                      pinMode(buttonPin, INPUT);<br>
-                      // initialize the RGB LED pins as an output:<br>
-                      pinMode(R, OUTPUT);<br>
+                    void setup() {<br>&ensp;
+                      // initialize the red LED pin as an output:<br>&ensp;
+                      pinMode(redLED, OUTPUT);<br>&ensp;
+                      // initialize the yellow LED pin as an output:<br>&ensp;
+                      pinMode(yellowLED, OUTPUT);<br>&ensp;
+                      // initialize the green LED pin as an output:<br>&ensp;
+                      pinMode(greenLED, OUTPUT);<br>&ensp;
+                      // initialize the pushbutton pin as an input:<br>&ensp;
+                      pinMode(buttonPin, INPUT);<br>&ensp;
+                      // initialize the RGB LED pins as an output:<br>&ensp;
+                      pinMode(R, OUTPUT);<br>&ensp;
                       pinMode(B, OUTPUT);<br>
                     }<br><br>
 
-                    void loop() {<br>
-                      // read the state of the pushbutton value:<br>
-                      buttonState = digitalRead(buttonPin);<br>
-                      // turn green LED on to show system is ready and working<br>
-                      digitalWrite(greenLED, HIGH);<br>
-                      // check if the pushbutton is pressed. If it is, the buttonState is HIGH:<br>
-                      if (buttonState == HIGH) {<br>
-                        // turn red LED on:<br>
-                        digitalWrite(redLED, HIGH);<br>
-                        // turn yellow LED on:<br>
-                        digitalWrite(yellowLED, HIGH);<br>
-                        // turn green LED off<br>
-                        digitalWrite(greenLED, LOW);<br><br>
+                    void loop() {<br>&ensp;
+                      // read the state of the pushbutton value:<br>&ensp;
+                      buttonState = digitalRead(buttonPin);<br>&ensp;
+                      // turn green LED on to show system is ready and working<br>&ensp;
+                      digitalWrite(greenLED, HIGH);<br>&ensp;
+                      // check if the pushbutton is pressed. If it is, the buttonState is HIGH:<br>&ensp;
+                      if (buttonState == HIGH) {<br>&ensp;&ensp;
+                        // turn red LED on:<br>&ensp;&ensp;
+                        digitalWrite(redLED, HIGH);<br>&ensp;&ensp;
+                        // turn yellow LED on:<br>&ensp;&ensp;
+                        digitalWrite(yellowLED, HIGH);<br>&ensp;&ensp;
+                        // turn green LED off<br>&ensp;&ensp;
+                        digitalWrite(greenLED, LOW);<br><br>&ensp;&ensp;
 
-                        // set the brightness of pin 9:<br>
-                        analogWrite(R, brightness);<br>
-                        // analogWrite(ledG, brightness);<br>
-                        analogWrite(B, brightness);<br><br>
+                        // set the brightness of pin 9:<br>&ensp;&ensp;
+                        analogWrite(R, brightness);<br>&ensp;&ensp;
+                        // analogWrite(ledG, brightness);<br>&ensp;&ensp;
+                        analogWrite(B, brightness);<br><br>&ensp;&ensp;
 
-                        // change the brightness for next time through the loop:<br>
-                        brightness = brightness + fadeAmount;<br><br>
+                        // change the brightness for next time through the loop:<br>&ensp;&ensp;
+                        brightness = brightness + fadeAmount;<br><br>&ensp;&ensp;
 
-                        // reverse the direction of the fading at the ends of the fade:<br>
-                        if (brightness <= 0 || brightness >= 255) {<br>
-                          fadeAmount = -fadeAmount;<br>
-                        }<br>
-                        // wait for 30 milliseconds to see the dimming effect<br>
-                        delay(30);<br>
-                      } else {<br>
-                        // turn red LED off:<br>
-                        digitalWrite(redLED, LOW);<br>
-                        // turn yellow LED off:<br>
-                        digitalWrite(yellowLED, LOW);<br><br>
+                        // reverse the direction of the fading at the ends of the fade:<br>&ensp;&ensp;
+                        if (brightness <= 0 || brightness >= 255) {<br>&ensp;&ensp;&ensp;
+                          fadeAmount = -fadeAmount;<br>&ensp;&ensp;
+                        }<br>&ensp;&ensp;
+                        // wait for 30 milliseconds to see the dimming effect<br>&ensp;&ensp;
+                        delay(30);<br>&ensp;
+                      } else {<br>&ensp;&ensp;
+                        // turn red LED off:<br>&ensp;&ensp;
+                        digitalWrite(redLED, LOW);<br>&ensp;&ensp;
+                        // turn yellow LED off:<br>&ensp;&ensp;
+                        digitalWrite(yellowLED, LOW);<br><br>&ensp;&ensp;
 
-                        // turn off RGB LED<br>
-                        for(int i=9;i<12;i++){<br>
-                        pinMode(i, INPUT);<br>
-                        }<br>
+                        // turn off RGB LED<br>&ensp;&ensp;
+                        for(int i=9;i<12;i++){<br>&ensp;&ensp;
+                        pinMode(i, INPUT);<br>&ensp;&ensp;
+                        }<br>&ensp;
                       }<br>
                     }<br>
                 </code>
