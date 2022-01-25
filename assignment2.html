@@ -17,70 +17,122 @@ layout: default
         <div class="header">
             <h1>Atharv's Assignment 2: Fade!</h1>
             <p>
-            <img src="side-view.jpg" width=400></a>
+            <img src="button-fade-on.jpg" width=400></a>
             </p>
             <p>
-            Here is all the documentation for assignment 1! 
+            Here is all the documentation for assignment 2! 
             </p>
         </div>
         <div class="Schematic">
             <h3>Schematic Diagram</h3>
             <p>
-            <img src="schematic.jpg" width=400></a>
+            <img src="button-fade-schematic.jpg" width=400></a>
             </p>
             <p>
             This is a schematic diagram of the circuit I built and shows
             the 3 LEDs connected to the 3 different pins with a resistor
-            of 220 ohms and a current output of 5V at the pins.
+            of 220 ohms and a current output of 5V at the pins. The button
+            has its own schematic towards the bottom and the RGB LED has
+            its own schematic at the top of the image.
             </p>
         </div>
 
         <div class="circuit">
             <h3>Circuit</h3>
             <p>
-            <img src="top-view.jpg" width=400></a>
+            <img src="button-fade-top-view.jpg" width=400></a>
+            <img src="button-fade-pins.jpg" width=400></a>
+            <img src="button-fade-circuit.jpg" width=400></a>
             </p>
             <p>
-            This is a top view of the breadboard circuit wjere you can see all the connections.
+            Here are some photos of the breadboard circuit where you can see all the connections from different angles.
             </p>
         </div>
 
         <div class="firmware">
             <h3>Firmware</h3>
             <p>
-            Here is the Arduino code I wrote and used for this blinking pattern:<br>
+            Here is the Arduino code I wrote and used for this button/fade pattern:<br>
                 <code>
                     /*<br>&ensp;
-                      HCDE 439: Physical Computing (Winter '22)<br>&ensp;
-                      Student: Atharv W<br>&ensp;
-                      Assignment 1: Blink<br>&ensp;<br><br>
+                      HCDE 439: Physical Computing (Winter '22)
+                      Student: Atharv W
+                      Assignment 2: Fade
 
-                      Turns on the 3 LEDs independently one after the other with a delay of 0.25 seconds<br>&ensp;
-                      following the pattern Blue-White-Red repeatedly.<br>
-                    */<br><br>
+                      Turns on the green LED to show the system is turned on and working.
+                      When button is pressed (and held):
+                        the green LED dimly blinks very fast (almost turned off)
+                        the red and yellow LED turn on
+                        the RGB LED fades in and out with a purple light
+                    */
 
-                    // the setup function runs once when you press reset or power the board<br>&ensp;
-                    void setup() {<br>
-                      // initialize digital pin LED_BUILTIN as an output.<br>
-                      pinMode(10, OUTPUT);    // Blue LED<br>
-                      pinMode(8, OUTPUT);     // White LED<br>
-                      pinMode(6, OUTPUT);     // Red LED<br>
-                    }<br><br>
+                    // constants won't change. They're used here to set pin numbers:
+                    const int buttonPin = 4;     // the number of the pushbutton pin
+                    const int redLED =  2;       // the number of the red LED pin
+                    const int yellowLED = 6;     // the number of the yellow LED
+                    const int greenLED = 7;      // the number of the green LED
+                    const int B = 9;             // the number of the RGB LED pin for Blue
+                    const int G = 10;            // the number of the RGB LED pin for Green
+                    const int R = 11;            // the number of the RGB LED pin for Red
 
-                    // the loop function runs over and over again forever<br>
-                    void loop() {<br>
-                      digitalWrite(10, HIGH);   // Blue LED  - ON   (HIGH is the voltage level)<br>
-                      digitalWrite(8, LOW);     // White LED - OFF<br>
-                      digitalWrite(6,LOW);      // Red LED   - OFF<br>
-                      delay(250);               // delay of 0.25 seconds or 250 milliseconds<br>
-                      digitalWrite(10, LOW);    // Blue LED  - OFF<br>
-                      digitalWrite(8, HIGH);    // White LED - ON<br>
-                      digitalWrite(6,LOW);      // Red LED   - OFF<br>
-                      delay(250);               // delay of 0.25 seconds or 250 milliseconds<br>
-                      digitalWrite(10, LOW);    // Blue LED  - OFF<br>
-                      digitalWrite(8, LOW);     // White LED - OFF<br>
-                      digitalWrite(6,HIGH);     // Red LED   - ON<br>
-                      delay(250);               // delay of 0.25 seconds or 250 milliseconds<br>
+                    // variables will change:
+                    int buttonState = 0;         // variable for reading the pushbutton status
+                    int brightness = 0;          // variable for reading the pushbutton status
+                    int fadeAmount = 5;          // variable for reading the pushbutton status
+
+                    void setup() {
+                      // initialize the red LED pin as an output:
+                      pinMode(redLED, OUTPUT);
+                      // initialize the yellow LED pin as an output:
+                      pinMode(yellowLED, OUTPUT);
+                      // initialize the green LED pin as an output:
+                      pinMode(greenLED, OUTPUT);
+                      // initialize the pushbutton pin as an input:
+                      pinMode(buttonPin, INPUT);
+                      // initialize the RGB LED pins as an output:
+                      pinMode(R, OUTPUT);
+                      pinMode(B, OUTPUT);
+                    }
+
+                    void loop() {
+                      // read the state of the pushbutton value:
+                      buttonState = digitalRead(buttonPin);
+                      // turn green LED on to show system is ready and working
+                      digitalWrite(greenLED, HIGH);
+                      // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
+                      if (buttonState == HIGH) {
+                        // turn red LED on:
+                        digitalWrite(redLED, HIGH);
+                        // turn yellow LED on:
+                        digitalWrite(yellowLED, HIGH);
+                        // turn green LED off
+                        digitalWrite(greenLED, LOW);
+
+                        // set the brightness of pin 9:
+                        analogWrite(R, brightness);
+                        // analogWrite(ledG, brightness);
+                        analogWrite(B, brightness);
+
+                        // change the brightness for next time through the loop:
+                        brightness = brightness + fadeAmount;
+
+                        // reverse the direction of the fading at the ends of the fade:
+                        if (brightness <= 0 || brightness >= 255) {
+                          fadeAmount = -fadeAmount;
+                        }
+                        // wait for 30 milliseconds to see the dimming effect
+                        delay(30);
+                      } else {
+                        // turn red LED off:
+                        digitalWrite(redLED, LOW);
+                        // turn yellow LED off:
+                        digitalWrite(yellowLED, LOW);
+
+                        // turn off RGB LED
+                        for(int i=9;i<12;i++){
+                        pinMode(i, INPUT);
+                        }
+                      }
                     }
                 </code>
             </p>
@@ -89,10 +141,10 @@ layout: default
         <div class="gif">
             <h3>GIF</h3>
             <p>
-            <img src="blink-gif.gif" width=400></a>
+            <img src="button-fade-gif.gif" width=400></a>
             </p>
             <p>
-            Enjoy this gif I made of the LEDs blinking!
+            Enjoy this gif I made!
             </p>
         </div>
     </body>
