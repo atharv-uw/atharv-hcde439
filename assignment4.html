@@ -54,8 +54,8 @@ layout: default
                     when the capactitve sensor is touched<br>
                   */<br><br>
 
-                  #include <CapacitiveSensor.h><br>
-                  #include <Servo.h><br><br>
+                  #include <p><CapacitiveSensor.h></p><br>
+                  #include <p><Servo.h><br></p><br>
 
                   Servo myServo;  // create a servo object<br><br><br>
 
@@ -79,13 +79,13 @@ layout: default
                     //    in the environment when this project was developed<br>&nbsp;
                     if (cs_4_2.capacitiveSensor(30) >= 600){<br>&nbsp;&nbsp;
                       // set the servo position<br>&nbsp;&nbsp;
-                      for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees<br>&nbsp;&nbsp;
-                      // in steps of 1 degree<br>&nbsp;&nbsp;
-                      myServo.write(pos);              // tell servo to go to position in variable 'pos'<br>&nbsp;&nbsp;
+                      for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees<br>&nbsp;&nbsp;&nbsp;
+                      // in steps of 1 degree<br>&nbsp;&nbsp;&nbsp;
+                      myServo.write(pos);              // tell servo to go to position in variable 'pos'<br>&nbsp;&nbsp;&nbsp;
                       delay(15);                       // waits 15ms for the servo to reach the position<br>&nbsp;&nbsp;
                       }<br>&nbsp;&nbsp;
-                      for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees<br>&nbsp;&nbsp;
-                        myServo.write(pos);              // tell servo to go to position in variable 'pos'<br>&nbsp;&nbsp;
+                      for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees<br>&nbsp;&nbsp;&nbsp;
+                        myServo.write(pos);              // tell servo to go to position in variable 'pos'<br>&nbsp;&nbsp;&nbsp;
                         delay(15);                       // waits 15ms for the servo to reach the position<br>&nbsp;&nbsp;
                       }<br>&nbsp;
                     }<br>&nbsp;
