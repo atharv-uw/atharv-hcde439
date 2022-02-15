@@ -1,0 +1,109 @@
+---
+layout: default
+---
+
+<!DOCTYPE html> 
+<html>
+    <body> 
+        <div class="header">
+            <h1>Atharv's Assignment 4: Libraries!</h1>
+            <p>
+            <img src="touch_sensor_image.jpeg" width=400></a>
+            </p>
+            <p>
+            Here is all the documentation for assignment 4! 
+            </p>
+        </div>
+        <div class="Schematic">
+            <h3>Schematic Diagram</h3>
+            <p>
+            <img src="touch_sensor_schematic.jpeg" width=400></a>
+            </p>
+            <p>
+            This is a schematic diagram of the circuit I built and shows
+            the servo motor connected to pin 9 along with 5V and the
+            ground on the Arduino. The capaticive touch sensor is created
+            by putting a 1 mega ohm resistor between pins 2 and 4 on the
+            Arduino with pin 2 as the receiving pin and a wire acting as
+            the touch sensing foil.
+            </p>
+        </div>
+
+        <div class="circuit">
+            <h3>Circuit</h3>
+            <p>
+            <img src="touch_sensor_image.jpeg" width=400></a>
+            <img src="touch_sensor_connections.jpeg" width=400></a>
+            </p>
+            <p>
+            Here are some photos of the breadboard circuit where you can see all the<br>connections from different angles.
+            </p>
+        </div>
+
+        <div class="firmware">
+            <h3>Firmware</h3>
+            <p>
+            Here is the Arduino code I wrote and used for this button/fade pattern:<br>
+                <code>
+                  /*<br>&nbsp;
+                    HCDE 439: Physical Computing (Winter '22)<br>&nbsp;
+                    Student: Atharv W<br>&nbsp;
+                    Assignment 4: Libraries!<br><br>&nbsp;
+
+                    The servo performs a sweep (0 to 180 and back to 0 degrees)<br>&nbsp;
+                    when the capactitve sensor is touched<br>
+                  */<br><br>
+
+                  #include <CapacitiveSensor.h><br>
+                  #include <Servo.h><br><br>
+
+                  Servo myServo;  // create a servo object<br><br><br>
+
+                  CapacitiveSensor   cs_4_2 = CapacitiveSensor(4,2);   <br>   
+                  // 1 megohm resistor between pins 4 & 2, pin 2 is sensor pin<br><br>
+
+                  int pos = 0; // to record the initial position of the servo<br><br>
+
+                  void setup() {<br>&nbsp;
+                    myServo.attach(9); // attaches the servo on pin 9 to the servo object<br><br>&nbsp;
+
+                    // turn off autocalibrate on channel 1<br>&nbsp;
+                    cs_4_2.set_CS_AutocaL_Millis(0xFFFFFFFF);<br>&nbsp;
+                    // turn on serial monitor<br>&nbsp;
+                    Serial.begin(9600);  <br>
+                  }<br><br>
+
+                  void loop() {<br>&nbsp;
+                    // if the sensor senses a value above 600, the servo will perform a sweep<br>&nbsp;
+                    // chose the value 600 after some caliberation to determine a definte touch<br>&nbsp;
+                    //    in the environment when this project was developed<br>&nbsp;
+                    if (cs_4_2.capacitiveSensor(30) >= 600){<br>&nbsp;&nbsp;
+                      // set the servo position<br>&nbsp;&nbsp;
+                      for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees<br>&nbsp;&nbsp;
+                      // in steps of 1 degree<br>&nbsp;&nbsp;
+                      myServo.write(pos);              // tell servo to go to position in variable 'pos'<br>&nbsp;&nbsp;
+                      delay(15);                       // waits 15ms for the servo to reach the position<br>&nbsp;&nbsp;
+                      }<br>&nbsp;&nbsp;
+                      for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees<br>&nbsp;&nbsp;
+                        myServo.write(pos);              // tell servo to go to position in variable 'pos'<br>&nbsp;&nbsp;
+                        delay(15);                       // waits 15ms for the servo to reach the position<br>&nbsp;&nbsp;
+                      }<br>&nbsp;
+                    }<br>&nbsp;
+                    Serial.println(cs_4_2.capacitiveSensor(30)); // print sensor output<br>&nbsp;
+                    delay(10);                          // arbitrary delay to limit data to serial port  <br>
+                  }
+                </code>
+            </p>
+        </div>
+
+        <div class="gif">
+            <h3>GIF</h3>
+            <p>
+            <img src="touch_sensor_gif.gif" width=400></a>
+            </p>
+            <p>
+            Enjoy this gif I made!
+            </p>
+        </div>
+    </body>
+</html>
