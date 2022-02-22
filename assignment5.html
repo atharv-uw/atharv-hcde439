@@ -1,0 +1,131 @@
+---
+layout: default
+---
+
+<!DOCTYPE html> 
+<html>
+    <body> 
+        <div class="header">
+            <h1>Atharv's Assignment 5: Load!</h1>
+            <p>
+            <img src="load_image.jpeg" width=400></a>
+            </p>
+            <p>
+            Here is all the documentation for assignment 5! 
+            </p>
+        </div>
+        <div class="Schematic">
+            <h3>Schematic Diagram</h3>
+            <p>
+            <img src="load_schematic.png" width=400></a>
+            </p>
+            <p>
+            The schematic of my whole setup is here!
+            </p>
+        </div>
+
+        <div class="circuit">
+            <h3>Circuit</h3>
+            <p>
+            <img src="load_image.jpeg" width=400></a>
+            <img src="load_connections.jpeg" width=400></a>
+            </p>
+            <p>
+            Here are some photos of the breadboard circuit where you can see all the<br>connections from different angles.
+            </p>
+        </div>
+
+        <div class="firmware">
+            <h3>Firmware</h3>
+            <p>
+            Here is the Arduino code I wrote and used for this button/fade pattern:<br>
+                <p>
+                  #include <CapacitiveSensor.h><br>
+                  #include <Servo.h><br><br>
+            </p>
+                <code>                  
+                  /*<br>&nbsp;
+                    HCDE 439: Physical Computing (Winter '22)<br>&nbsp;
+                    Student: Atharv W<br>&nbsp;
+                    Assignment 5: Load!<br><br>&nbsp;
+
+                    The remote ON/OFF button toggles the led strip on<br>&nbsp;
+                    and off as well as the blue led on and off at the<br>&nbsp;
+                    same time. In the future, I will also have the<br>&nbsp;
+                    up and down buttons increase or decrease the<br>&nbsp;
+                    brightness of the strip.<br>
+                  */<br><br>
+
+                  #include <IRremote.h><br><br>
+
+                  // pin initialization<br>
+                  const int RECV_PIN = 7;<br>
+                  const int ledpin = 2;<br>
+                  const int ledstrip = 9;<br>
+
+                  // variables needed<br>
+                  int brightness = 127;  // brightness of led<br>
+                  boolean stat = false;  // stores whether led is on or off<br><br>
+
+                  IRrecv irrecv(RECV_PIN);<br>
+                  decode_results results;<br>
+
+                  void setup(){<br>&nbsp;
+                    Serial.begin(9600);         // starting serial port<br>&nbsp;
+                    irrecv.enableIRIn();        <br>&nbsp;
+                    irrecv.blink13(true);<br>&nbsp;
+                    pinMode(ledpin, OUTPUT);    // setting led pin to output<br>&nbsp;
+                    pinMode(ledstrip, OUTPUT);  // setting transistor pin <br>&nbsp;
+                                                //  (which is connected to led strip) to output<br>
+                  }<br>&nbsp;<br>
+
+                  void loop(){<br>&nbsp;
+                    // when the IR receiver is receiving<br>&nbsp;
+                    if (irrecv.decode(&results)){<br>&nbsp;<br>&nbsp;
+                          // print the hex code of the received binary data<br>&nbsp;&nbsp;
+                          Serial.print(results.value, HEX);<br>&nbsp;<br>&nbsp;
+
+                          // to check which button was pressed<br>&nbsp;&nbsp;
+                          switch(results.value){<br>&nbsp;&nbsp;&nbsp;
+                            case 0xFFA25D: //Remote button "ON/OFF" pressed<br>&nbsp;&nbsp;&nbsp;
+                            if(stat == true){             // if lights is already on<br>&nbsp;&nbsp;&nbsp;
+                              digitalWrite(ledpin, LOW);  // turn led off<br>&nbsp;&nbsp;&nbsp;
+                              analogWrite(ledstrip, 0);   // turn led strip off<br>&nbsp;&nbsp;&nbsp;
+                              Serial.println("\t OFF");   // print OFF to serial<br>&nbsp;&nbsp;&nbsp;
+                              stat = false;      // set status to false because no lights are off<br>&nbsp;&nbsp;&nbsp;
+                              delay(100); <br>&nbsp;&nbsp;&nbsp;
+                            } else {                              // if lights are off<br>&nbsp;&nbsp;&nbsp;
+                              digitalWrite(ledpin, HIGH);         // turn led on<br>&nbsp;&nbsp;&nbsp;
+                              analogWrite(ledstrip, brightness);  // turn led strip on<br>&nbsp;&nbsp;&nbsp;
+                              Serial.println("\t ON");            // print ON to serial<br>&nbsp;&nbsp;&nbsp;
+                              stat = true;       // set status to true because lights are now on<br>&nbsp;&nbsp;&nbsp;
+                              delay(100);<br>&nbsp;&nbsp;&nbsp;
+                            }<br>&nbsp;&nbsp;
+                            break; // end button case<br>&nbsp;&nbsp;
+                          }<br>&nbsp;&nbsp;
+                          // for brightness control<br>&nbsp;&nbsp;
+                  //        switch(results.value){<br>&nbsp;&nbsp;
+                  //          case 0xFF18E7: //Keypad button "2"<br>&nbsp;&nbsp;
+                  //          digitalWrite(greenPin, HIGH);<br>&nbsp;&nbsp;
+                  //          delay(2000);<br>&nbsp;&nbsp;
+                  //          digitalWrite(greenPin, LOW);<br>&nbsp;&nbsp;
+                  //          }<br>&nbsp;&nbsp;
+                          irrecv.resume();<br>&nbsp;
+                    }<br>&nbsp;
+                  }<br>
+                  // on off button HEX code = FFA25D<br>
+                </code>
+            </p>
+        </div>
+
+        <div class="gif">
+            <h3>GIF</h3>
+            <p>
+            <img src="load_gif.gif" width=400></a>
+            </p>
+            <p>
+            Enjoy this gif I made!
+            </p>
+        </div>
+    </body>
+</html>
