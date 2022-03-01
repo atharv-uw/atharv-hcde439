@@ -37,7 +37,7 @@ layout: default
 
         <div class="firmware">
             <h3>Firmware</h3>
-            <p>
+            <pre>
             Here is the arduino code to read joystick values:<br>
                 <code>
                   "// Joystick to web commuication 
@@ -63,9 +63,38 @@ layout: default
                       delay(1);
                     }"
                 </code>
-            </p>
-          <p>
+            </pre>
+          <pre>
           Here is the javascript code to read serial and implement them on a local server (or web):<br>
+          index.html
+          <code>
+          "<!DOCTYPE html>
+            <html lang="">
+
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>p5.js example</title>
+              <style>
+                body {
+                  padding: 0;
+                  margin: 0;
+                }
+              </style>
+              <script src="../p5.js"></script>
+              <!-- <script src="../addons/p5.sound.js"></script> -->
+              <script src="sketch.js"></script>
+              <script src="p5.serialport.js"></script>
+            </head>
+
+            <body>
+              <main>
+              </main>
+            </body>
+
+            </html>"
+          </code>
+          Sketch.js
             <code>
               "var serial; // variable to hold an instance of the serialport library
               var portName = 'COM7' //rename to the name of your port
@@ -148,13 +177,19 @@ layout: default
                 ellipse(xpos,ypos,50,50);
               }"
             </code>
-          </p>
-          <p>
+          </pre>
+          <pre>
           Here is the javascript code to write to the serial when an event occurs:<br>
+          index.html
             <code>
               ""
             </code>
-          </p>
+           sketch.js
+            <code>
+              ""
+            </code>
+          </pre>
+          <pre>
           Here is the arduino code to read serial and turn on an led when event occurs:<br>
             <code>
               " // Web to Arduino communication 
@@ -189,7 +224,7 @@ layout: default
                     }
                 }"
             </code>
-          </p>
+          </pre>
         </div>
 
         <div class="gif">
